@@ -372,3 +372,14 @@ bool dip_switch_update_user(uint8_t index, bool active) {
     }
     return true;
 }
+
+const key_override_t minus_key_shift_override = ko_make_basic(MOD_MASK_SHIFT, KC_MINS, LSFT(KC_QUOT));
+const key_override_t slash_key_shift_override = ko_make_basic(MOD_MASK_SHIFT, KC_SLSH, LSFT(KC_COMM));
+const key_override_t quote_key_shift_override = ko_make_basic(MOD_MASK_SHIFT, KC_QUOT, LSFT(KC_MINS));
+
+// This globally defines all key overrides to be used
+const key_override_t *key_overrides[] = {
+	&minus_key_shift_override,
+    &slash_key_shift_override,
+    &quote_key_shift_override
+};
