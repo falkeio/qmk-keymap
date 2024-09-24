@@ -16,9 +16,9 @@
 
 #include QMK_KEYBOARD_H
 
-enum planck_layers { _COLEMAK, _QWERTY, _DVORAK, _LOWER, _RAISE, _PLOVER, _ADJUST };
+enum planck_layers { _GRAPHITE, _ISRT, _DVORAK, _LOWER, _RAISE, _PLOVER, _ADJUST };
 
-enum planck_keycodes { COLEMAK = SAFE_RANGE, QWERTY, DVORAK, PLOVER, BACKLIT, EXT_PLV };
+enum planck_keycodes { GRAPHITE = SAFE_RANGE, ISRT, DVORAK, PLOVER, BACKLIT, EXT_PLV };
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
@@ -26,7 +26,7 @@ enum planck_keycodes { COLEMAK = SAFE_RANGE, QWERTY, DVORAK, PLOVER, BACKLIT, EX
 /* clang-format off */
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-/* Colemak DH
+/* Graphite
  * ,-----------------------------------------------------------------------------------.
  * |   Q  |   W  |   F  |   P  |   B  | Tab  | Bksp |   J  |   L  |   U  |   Y  |   ;  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -36,16 +36,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Brite| Ctrl | Alt  | GUI  |Lower |    Space    |Raise | Left | Down |  Up  |Right |
  * `-----------------------------------------------------------------------------------'
- * /
-[_COLEMAK] = LAYOUT_planck_grid(
-    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_TAB,  KC_BSPC,  KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,
-    KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_ESC,  KC_QUOT,  KC_M,    KC_N,    KC_E,    KC_I,    KC_O,
-    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_LSFT, KC_ENT,   KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH,
-    BACKLIT, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_RSFT, KC_SPC,   RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+ */
+[_GRAPHITE] = LAYOUT_planck_grid(
+    KC_B,    KC_L,    KC_D,    KC_W,    KC_Z,    KC_TAB,               KC_BSPC,  KC_QUOT, KC_F,    KC_O,    KC_U,    KC_SCLN,
+    KC_N,    KC_R,    KC_T,    KC_S,    KC_G,    KC_ESC,               KC_QUOT,  KC_Y,    KC_H,    KC_A,    KC_E,    KC_COMM,
+    KC_Q,    KC_X,    KC_M,    KC_C,    KC_V,    KC_LSFT,              KC_ENT,   KC_K,    KC_P,    KC_DOT,  KC_MINS, KC_SLSH,
+    KC_MEH,  KC_LCTL, KC_LALT, KC_LGUI, LOWER,   MT(MOD_MEH,KC_SPACE), KC_RSFT,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 ),
-*/
+
+/* ISRT
+ * ,-----------------------------------------------------------------------------------.
+ * |   Q  |   W  |   F  |   P  |   B  | Tab  | Bksp |   J  |   L  |   U  |   Y  |   ;  |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |   A  |   R  |   S  |   T  |   G  | Esc  |  '   |   M  |   N  |   E  |   I  |   O  |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |   Z  |   X  |   C  |   D  |   V  | Shift|Enter |   K  |   H  |   ,  |   .  |   /  |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Brite| Ctrl | Alt  | GUI  |Lower |    Space    |Raise | Left | Down |  Up  |Right |
+ * `-----------------------------------------------------------------------------------'
+ */
+
 // ISRT
-[_COLEMAK] = LAYOUT_planck_grid(
+[_ISRT] = LAYOUT_planck_grid(
     KC_Y,    KC_C,    KC_L,    KC_M,    KC_K,    KC_TAB,               KC_BSPC,  KC_Z,    KC_F,    KC_U,    KC_COMM, KC_SCLN,
     KC_I,    KC_S,    KC_R,    KC_T,    KC_G,    KC_ESC,               KC_QUOT,  KC_P,    KC_N,    KC_E,    KC_A,    KC_O,
     KC_Q,    KC_V,    KC_W,    KC_D,    KC_J,    KC_LSFT,              KC_ENT,   KC_B,    KC_H,    KC_SLSH, KC_DOT,  KC_X,
@@ -78,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Brite| Ctrl | Alt  | GUI  |Lower |    Space    |Raise | Left | Down |  Up  |Right |
  * `-----------------------------------------------------------------------------------'
- */
+ * /
 [_QWERTY] = LAYOUT_planck_grid(
     KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_TAB,  KC_BSPC, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
     KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_ESC,  KC_QUOT, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
@@ -195,7 +207,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |      | Reset|Debug | RGB  |RGBMOD| HUE+ | HUE- | SAT+ | SAT- |BRGTH+|BRGTH-|  Del |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |MUSmod|Aud on|Audoff|AGnorm|AGswap|Qwerty|Colemk|Dvorak|Plover|      |
+ * |      |      |MUSmod|Aud on|Audoff|AGnorm|AGswap|Graphi| ISRT |Dvorak|Plover|      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |Voice-|Voice+|Mus on|Musoff|MIDIon|MIDIof|      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -204,7 +216,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_ADJUST] = LAYOUT_planck_grid(
     _______, QK_BOOT, DB_TOGG, RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, KC_DEL ,
-    _______, EE_CLR,  MU_NEXT, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  COLEMAK, DVORAK,  PLOVER,  _______,
+    _______, EE_CLR,  MU_NEXT, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, GRAPHITE,  ISRT, DVORAK,  PLOVER,  _______,
     _______, AU_PREV, AU_NEXT, MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 )
@@ -223,16 +235,16 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case QWERTY:
+        case GRAPHITE:
             if (record->event.pressed) {
                 print("mode just switched to qwerty and this is a huge string\n");
-                set_single_persistent_default_layer(_QWERTY);
+                set_single_persistent_default_layer(_GRAPHITE);
             }
             return false;
             break;
-        case COLEMAK:
+        case ISRT:
             if (record->event.pressed) {
-                set_single_persistent_default_layer(_COLEMAK);
+                set_single_persistent_default_layer(_ISRT);
             }
             return false;
             break;
@@ -284,13 +296,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 /* clang-format off */
 float melody[8][2][2] = {
-    {{440.0f, 8}, {440.0f, 24}}, 
-    {{440.0f, 8}, {440.0f, 24}}, 
-    {{440.0f, 8}, {440.0f, 24}}, 
-    {{440.0f, 8}, {440.0f, 24}}, 
-    {{440.0f, 8}, {440.0f, 24}}, 
-    {{440.0f, 8}, {440.0f, 24}}, 
-    {{440.0f, 8}, {440.0f, 24}}, 
+    {{440.0f, 8}, {440.0f, 24}},
+    {{440.0f, 8}, {440.0f, 24}},
+    {{440.0f, 8}, {440.0f, 24}},
+    {{440.0f, 8}, {440.0f, 24}},
+    {{440.0f, 8}, {440.0f, 24}},
+    {{440.0f, 8}, {440.0f, 24}},
+    {{440.0f, 8}, {440.0f, 24}},
     {{440.0f, 8}, {440.0f, 24}},
 };
 /* clang-format on */
@@ -307,7 +319,7 @@ float melody[8][2][2] = {
 #define ET12_MAJOR_THIRD 1.259921
 #define ET12_PERFECT_FOURTH 1.33484
 #define ET12_TRITONE 1.414214
-#define ET12_PERFECT_FIFTH 1.498307	
+#define ET12_PERFECT_FIFTH 1.498307
 
 deferred_token tokens[8];
 
